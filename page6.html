@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Full-Screen Background with Music, Disco Lights, and Banana Sparkles</title>
+    <style>
+        
+        body {
+            margin: 0;
+            height: 100vh;
+            overflow: hidden; 
+            background-color: #000; 
+        }
+
+        
+        .background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('background6.png'); 
+            background-size: cover;
+            background-position: center;
+            transition: background-image 0.5s ease-in-out; 
+        }
+
+        
+        .planet {
+            position: absolute;
+            top: 50%; 
+            left: 50%; 
+            transform: translate(-50%, -50%); 
+            width: 100vw; 
+            height: auto;
+            z-index: 2; 
+            cursor: pointer; 
+        }
+
+        
+        .disco-lights {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1; 
+            display: none; 
+            animation: disco 1s infinite alternate; 
+        }
+
+        
+        @keyframes disco {
+            0% {
+                background-color: rgba(255, 0, 0, 0.5); /* Red */
+            }
+            25% {
+                background-color: rgba(0, 255, 0, 0.5); /* Green */
+            }
+            50% {
+                background-color: rgba(0, 0, 255, 0.5); /* Blue */
+            }
+            75% {
+                background-color: rgba(255, 255, 0, 0.5); /* Yellow */
+            }
+            100% {
+                background-color: rgba(255, 0, 255, 0.5); /* Magenta */
+            }
+        }
+
+        
+        .banana-sparkle {
+            position: absolute;
+            font-size: 2rem; 
+            animation: sparkle 2s infinite;
+            pointer-events: none; 
+        }
+
+        
+        @keyframes sparkle {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            50% {
+                transform: translateY(-50px) rotate(45deg);
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+        }
+
+        
+        audio {
+            position: absolute;
+            top: -9999px;
+            left: -9999px;
+            pointer-events: none; 
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="background" id="background"></div>
+
+    
+    <img class="planet" src="planet.png" alt="Planet Image" id="planet" />
+
+    
+    <div class="disco-lights" id="disco-lights"></div>
+
+    
+    <div id="sparkles-container"></div>
+
+    
+    <audio id="audio" preload="auto">
+        <source src="banana.mp3" type="audio/mp3"> 
+        Your browser does not support the audio element.
+    </audio>
+
+    <script>
+        
+        const planet = document.getElementById("planet");
+        const audio = document.getElementById("audio");
+        const discoLights = document.getElementById("disco-lights");
+        const sparklesContainer = document.getElementById("sparkles-container");
+        const background = document.getElementById("background");
+
+        
+        let isPlaying = false;
+
+       
+        let sparkleInterval;
+
+        
+        function generateSparkles() {
+            const numSparkles = 50; 
+
+            for (let i = 0; i < numSparkles; i++) {
+                const sparkle = document.createElement("span");
+                sparkle.classList.add("banana-sparkle");
+                sparkle.innerText = "🍌"; 
+
+               
+                const xPos = Math.random() * window.innerWidth;
+                const yPos = Math.random() * window.innerHeight;
+                sparkle.style.left = `${xPos}px`;
+                sparkle.style.top = `${yPos}px`;
+
+               
+                const animationDuration = Math.random() * 2 + 1; 
+                sparkle.style.animationDuration = `${animationDuration}s`;
+
+                
+                sparklesContainer.appendChild(sparkle);
+
+                
+                setTimeout(() => {
+                    sparkle.remove();
+                }, animationDuration * 1000); 
+            }
+        }
+
+        
+        planet.addEventListener("click", function() {
+            if (isPlaying) {
+                
+                audio.pause();
+                discoLights.style.display = "none"; 
+                clearInterval(sparkleInterval); 
+                removeAllSparkles(); 
+                background.style.backgroundImage = "url('background6.png')"; 
+                isPlaying = false; 
+            } else {
+                
+                audio.play();
+                discoLights.style.display = "block"; 
+                sparkleInterval = setInterval(generateSparkles, 500); 
+                background.style.backgroundImage = "url('jungle.jpg')"; 
+                isPlaying = true; 
+            }
+        });
+
+        
+        function removeAllSparkles() {
+            const allSparkles = document.querySelectorAll(".banana-sparkle");
+            allSparkles.forEach(sparkle => sparkle.remove());
+        }
+    </script>
+</body>
+</html>

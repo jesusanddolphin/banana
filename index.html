@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <style>
+    
+    body {
+      cursor: url('tape.png') 25 25, auto;
+      background: url('banana1.jpg') no-repeat center center fixed; 
+      background-size: cover; 
+      background-position: center; 
+      margin: 0;
+      padding: 0;
+      height: 100vh; 
+      overflow: hidden; 
+    }
+
+    
+    img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    
+    #buttonImage {
+      position: absolute;  
+      top: 87%;  
+      left: 94%;   
+      width: 160px;  
+      height: auto;  
+      z-index: 999;  
+    }
+
+  </style>
+</head>
+<body>
+
+  
+  <a href="page2.html">
+    <img src="banana1.jpg" alt="Banana Image">
+  </a>
+
+ 
+  <a href="page2.html">
+    <img id="buttonImage" src="button1.png" alt="Button Image">
+  </a>
+
+  <script>
+    let zIndexCounter = 1; 
+
+    document.addEventListener('mousemove', (e) => {
+      const cursor = document.createElement('div'); 
+      cursor.style.position = 'absolute';
+      cursor.style.top = `${e.pageY - 125}px`; 
+      cursor.style.left = `${e.pageX - 125}px`;
+      cursor.style.backgroundColor = 'rgb(255, 238, 0)'; 
+      cursor.style.width = '250px';
+      cursor.style.height = '250px';
+      cursor.style.borderRadius = '50%'; 
+      cursor.style.pointerEvents = 'none'; 
+      cursor.style.filter = 'blur(30px)'; 
+      cursor.style.zIndex = zIndexCounter++; 
+
+      
+      cursor.style.boxShadow = '0 0 30px rgba(255, 255, 0, 0.6)';
+
+      document.body.appendChild(cursor); 
+
+      
+      setTimeout(() => {
+        cursor.remove();
+      }, 500); 
+    });
+  </script>
+
+</body>
+</html>
+
+<!-- thank you maria lande lund for the cool idea --> 
+

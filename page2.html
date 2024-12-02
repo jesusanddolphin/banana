@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Click to Multiply, Rotate, and Float Images</title>
+  <style>
+    
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh; 
+      background: url('background2.jpg') no-repeat center center fixed; 
+      background-size: cover; 
+    }
+
+    
+    #movingImg {
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      background: url('comedian.png') no-repeat center/cover;
+      transition: transform 0.1s;
+      animation: rotateAndFloat 5s infinite linear; 
+    }
+
+    
+    .comedian {
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      background: url('comedian.png') no-repeat center/cover;
+      animation: rotateAndFloat 5s infinite linear; 
+    }
+
+    
+    @keyframes rotateAndFloat {
+      0% {
+        transform: rotate(0deg) translateY(0); 
+      }
+      50% {
+        transform: rotate(180deg) translateY(-50px); 
+      }
+      100% {
+        transform: rotate(360deg) translateY(0); 
+      }
+    }
+    #buttonImage {
+      position: absolute;  
+      top: 80%;  
+      left: 87%;   
+      width: 160px; 
+      height: auto;  
+      z-index: 999;  
+    }
+  </style>
+</head>
+<body>
+  <!-- Initial image element -->
+  <div id="movingImg"></div>
+  <a href="page3.html">
+    <img id="buttonImage" src="button2.png" alt="Button Image">
+  </a>
+  <script>
+    
+    function createNewImage(event) {
+      
+      const newImage = document.createElement('div');
+      newImage.classList.add('comedian'); 
+
+      
+      const clickX = event.clientX - 200; 
+      const clickY = event.clientY - 200; 
+
+      newImage.style.left = `${clickX}px`;
+      newImage.style.top = `${clickY}px`;
+
+      
+      document.body.appendChild(newImage);
+    }
+
+    
+    document.getElementById('movingImg').addEventListener('click', createNewImage);
+
+    
+    document.body.addEventListener('click', createNewImage);
+  </script>
+</body>
+</html>
+
+<!-- thank you to haoze li for inspiring me --> 
+

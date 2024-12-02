@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fullscreen Images</title>
+    <style>
+        
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden; 
+        }
+
+        
+        .parent {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        
+        .image1 {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; 
+            z-index: 1; 
+        }
+
+        
+        .image2 {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; 
+            z-index: 2; 
+        }
+
+        
+        #cursor {
+            position: absolute;
+            pointer-events: none; 
+            width: 140px; 
+            height: auto;
+            transition: 0.1s ease;
+            z-index: 9999; 
+        }
+    </style>
+</head>
+
+<body>
+    <div class="parent">
+        
+        <img class="image1" src="gallery.jpg" alt="Gallery Image" />
+
+       
+        <a href="page4.html">
+            <img class="image2" src="klein.png" alt="Klein Image" />
+        </a>
+    </div>
+
+    
+    <img id="cursor" src="bananaeye.png" alt="Custom Cursor">
+   
+    <script>
+        const cursor = document.getElementById("cursor");
+
+        
+        document.addEventListener("mousemove", (e) => {
+            cursor.style.left = e.pageX - cursor.offsetWidth / 2 + "px";
+            cursor.style.top = e.pageY - cursor.offsetHeight / 2 + "px";
+        });
+    </script>
+</body>
+</html>

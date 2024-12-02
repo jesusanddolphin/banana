@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fullscreen Background with Draggable Images</title>
+  <style>
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    
+    html, body {
+      height: 100%;
+      width: 100%;
+    }
+
+    
+    body {
+      background-image: url('background4.jpg'); 
+      background-size: cover; 
+      background-position: center center; 
+      background-attachment: fixed; 
+      position: relative; 
+    }
+
+    
+    .draggable {
+      position: absolute;
+      cursor: grab; 
+      transition: transform 0.2s ease;
+      max-width: 100%; 
+      max-height: 100%;
+    }
+    #buttonImage {
+      position: absolute;  
+      top: 87%;  
+      left: 92%;   
+      width: 100px;  
+      height: auto;  
+      z-index: 999;  
+    }
+  </style>
+</head>
+<body>
+
+  
+  <img src="p1.png" class="draggable" id="img1">
+  <img src="p2.png" class="draggable" id="img2">
+  <img src="p3.png" class="draggable" id="img3">
+  <img src="p4.png" class="draggable" id="img4">
+  <img src="p5.png" class="draggable" id="img5">
+  <img src="p6.png" class="draggable" id="img6">
+  <img src="p7.png" class="draggable" id="img7">
+  <img src="p8.png" class="draggable" id="img8">
+  <img src="p9.png" class="draggable" id="img9">
+ 
+  <a href="page5.html">
+    <img id="buttonImage" src="button4.png" alt="Button Image">
+  </a>
+  
+  <script>
+    
+    let deviceType = "";
+    const isTouchDevice = () => {
+      try {
+        
+        document.createEvent("TouchEvent");
+        deviceType = "touch";
+        return true;
+      } catch (e) {
+        deviceType = "mouse";
+        return false;
+      }
+    };
+
+    isTouchDevice();
+
+    
+    const events = {
+      mouse: {
+        down: "mousedown",
+        move: "mousemove",
+        up: "mouseup",
+      },
+      touch: {
+        down: "touchstart",
+        move: "touchmove",
+        up: "touchend",
+      },
+    };
+
+    
+    function makeDraggable(element) {
+      let initialX = 0, initialY = 0;
+      let moveElement = false;
+
+      
+      element.addEventListener(events[deviceType].down, (e) => {
+        e.preventDefault();
+
+        
+        initialX = !isTouchDevice() ? e.clientX : e.touches[0].clientX;
+        initialY = !isTouchDevice() ? e.clientY : e.touches[0].clientY;
+
+        
+        moveElement = true;
+        element.style.cursor = 'grabbing';
+      });
+
+      
+      document.addEventListener(events[deviceType].move, (e) => {
+        if (moveElement) {
+          e.preventDefault();
+
+          
+          let newX = !isTouchDevice() ? e.clientX : e.touches[0].clientX;
+          let newY = !isTouchDevice() ? e.clientY : e.touches[0].clientY;
+
+          
+          element.style.left = element.offsetLeft - (initialX - newX) + "px";
+          element.style.top = element.offsetTop - (initialY - newY) + "px";
+
+          
+          initialX = newX;
+          initialY = newY;
+        }
+      });
+
+      
+      document.addEventListener(events[deviceType].up, () => {
+        moveElement = false;
+        element.style.cursor = 'grab';
+      });
+
+      
+      element.addEventListener("mouseleave", () => {
+        moveElement = false;
+        element.style.cursor = 'grab';
+      });
+    }
+
+    
+    window.addEventListener('load', () => {
+      const images = document.querySelectorAll('.draggable');
+      images.forEach(img => {
+        
+        const randomTop = Math.random() * (window.innerHeight - img.height); 
+        const randomLeft = Math.random() * (window.innerWidth - img.width); 
+
+        img.style.top = randomTop + 'px';
+        img.style.left = randomLeft + 'px';
+
+        
+        makeDraggable(img);
+      });
+    });
+  </script>
+
+</body>
+</html>

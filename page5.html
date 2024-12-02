@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>country</title>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap');
+        
+        
+        svg { display: none; }
+        
+        .grid {
+            display: flex;
+            flex-wrap: wrap;
+            width: 1000px;
+            height: 800px;
+            justify-content: center;
+        }
+        
+        .grid__item {
+            position: relative;
+            height: 120px; 
+            width: 120px;  
+            margin: 5px;
+            opacity: 0;
+            transition: opacity 2s ease 0.4s, transform 0.8s ease;
+            transform: scale(1);
+            font-family: "EB Garamond";
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            
+            
+            border-radius: 50%;  
+            background-color: yellow; 
+        }
+
+        .grid__item:hover {
+            opacity: 1;
+            transition: opacity 0.2s ease;
+            transform: scale(1.04);
+        }
+
+        .grid__item a {
+            color: rgb(255, 251, 0); 
+            text-decoration: none;
+            font-size: 14px;
+            position: absolute;
+            bottom: 10px;
+            width: 100%;
+            text-align: center;
+        }
+
+        body { display: flex; justify-content: center; }
+        a:link, a:visited { color: rgb(246, 255, 0); background-color: transparent; text-decoration: none; }
+    </style>
+</head>
+<body class="page1">
+
+    
+    <div class="grid">
+        <div class="grid__item">united kingdom</div>
+        <div class="grid__item">france</div>
+        <div class="grid__item">kenya</div>
+        <div class="grid__item">canada</div>
+        <div class="grid__item">india</div>
+        <div class="grid__item">germany</div>
+        <div class="grid__item">australia</div>
+        <div class="grid__item">colombia</div>
+        <div class="grid__item">brasil</div>
+        <div class="grid__item">turkey</div>
+        <div class="grid__item">vietnam</div>
+        <div class="grid__item">nigeria</div>
+        <div class="grid__item">japan</div>
+        <div class="grid__item">laos</div>
+        <div class="grid__item">united States</div>
+        <div class="grid__item">china</div>
+        <div class="grid__item">ukraine</div>
+        <div class="grid__item">portugal</div>
+        <div class="grid__item">lebanon</div>
+        <div class="grid__item">jamaica</div>
+        <div class="grid__item">egypt</div>
+        <div class="grid__item">cambodia</div>
+        <div class="grid__item">argentina</div>
+        <div class="grid__item">iran</div>
+        <div class="grid__item" style="background-color: rgb(34, 0, 255);"><a href="page6.html">country</a></div>
+        <div class="grid__item">netherlands</div>
+        <div class="grid__item">hungary</div>
+        <div class="grid__item">indonesia</div>
+        <div class="grid__item">south korea</div>
+        <div class="grid__item">spain</div>
+        <div class="grid__item">cuba</div>
+        <div class="grid__item">mexico</div>
+        <div class="grid__item">nepal</div>
+        <div class="grid__item">singapore</div>
+        <div class="grid__item">uganda</div>
+        <div class="grid__item">venezuela</div>
+        <div class="grid__item">sweden</div>
+        <div class="grid__item">united arab emirates</div>
+        <div class="grid__item">tanzania</div>
+        <div class="grid__item">italy</div>
+        <div class="grid__item">tajikistan</div>
+        <div class="grid__item">peru</div>
+        <div class="grid__item">mongolia</div>
+        <div class="grid__item">iceland</div>
+        <div class="grid__item">greece</div>
+        <div class="grid__item">palastine</div>
+        <div class="grid__item">thailand</div>
+        <div class="grid__item">georgia</div>
+        <div class="grid__item">ecuador</div>
+        <div class="grid__item">south africa</div>
+    </div>
+</body>
+</html>
+<!-- thank you to zach jones for inspiring me -->
